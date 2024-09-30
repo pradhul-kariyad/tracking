@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:tracking/view/auth/mobileNumber.dart';
+import 'package:tracking/view/auth/stepOne.dart';
+import 'package:tracking/view/auth/stepThree.dart';
+import 'package:tracking/view/auth/stepTow.dart';
 import 'package:tracking/view/home/home.dart';
 import 'package:tracking/view/screens/spashScreen/firstSreen.dart';
 import 'package:tracking/view/screens/spashScreen/secondSreen.dart';
@@ -27,6 +29,6 @@ class MyApp extends StatelessWidget {
             home: child,
           );
         },
-        child: MobileNumber());
+        child: Firstsreen());
   }
 }

@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tracking/main.dart';
-import 'package:tracking/view/auth/mobileNumber.dart';
+import 'package:tracking/view/auth/stepOne.dart';
 import 'package:tracking/view/screens/spashScreen/fourthScreen.dart';
 import 'package:tracking/view/screens/spashScreen/secondSreen.dart';
 import 'package:tracking/view/screens/spashScreen/thirdSreen.dart';
@@ -103,7 +103,7 @@ class Fourthscreen extends StatelessWidget {
             onTap: () {
               print("fourth sreen");
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return MobileNumber();
+                return StepOne();
               }));
             },
             child: Container(

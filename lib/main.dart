@@ -9,6 +9,7 @@ import 'package:tracking/view/home/home.dart';
 import 'package:tracking/view/screens/spashScreen/firstSreen.dart';
 import 'package:tracking/view/screens/spashScreen/secondSreen.dart';
 import 'package:tracking/view/screens/spashScreen/thirdSreen.dart';
+import 'package:tracking/view/searchLocation/searchLocation.dart';
 
 void main() {
   runApp(MyApp());

@@ -6,6 +6,7 @@ import 'package:tracking/view/auth/stepOne.dart';
 import 'package:tracking/view/auth/stepThree.dart';
 import 'package:tracking/view/auth/stepTow.dart';
 import 'package:tracking/view/home/home.dart';
+import 'package:tracking/view/screens/confirmLocation/confirmLocation.dart';
 import 'package:tracking/view/screens/spashScreen/firstSreen.dart';
 import 'package:tracking/view/screens/spashScreen/secondSreen.dart';
 import 'package:tracking/view/screens/spashScreen/thirdSreen.dart';

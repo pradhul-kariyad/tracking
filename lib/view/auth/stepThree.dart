@@ -1,7 +1,9 @@
-// ignore_for_file: avoid_print, library_private_types_in_public_api
+// ignore_for_file: avoid_print, library_private_types_in_public_api, unused_import, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tracking/view/auth/stepTow.dart';
 import 'package:tracking/view/home/home.dart';
 import 'package:tracking/view/screens/spashScreen/fourthScreen.dart';
 
@@ -16,228 +18,245 @@ class _StepThreeState extends State<StepThree> {
   final TextEditingController _nameController = TextEditingController();
   String? _selectedGender;
   bool _isDisabled = false;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 255, 248, 248),
-      body: Column(
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: double.infinity,
-                    color: const Color(0xff383434),
-                    height: 148.h,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: 50.h),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            IconButton(
-                              onPressed: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return Fourthscreen();
-                                }));
-                              },
-                              icon: const Icon(
-                                Icons.chevron_left_sharp,
-                                size: 30,
-                                color: Color(0xffF8F8F8),
+      body: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      color: const Color(0xff383434),
+                      height: 148.h,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 50.h),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return StepTow();
+                                  }));
+                                },
+                                icon: const Icon(
+                                  Icons.chevron_left_sharp,
+                                  size: 30,
+                                  color: Color(0xffF8F8F8),
+                                ),
                               ),
-                            ),
-                            Container(
-                              width: 75.w,
-                              height: 1.5.h,
-                              color: const Color(0xffF8F8F8),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(left: 15.w),
-                              width: 75.w,
-                              height: 1.5.h,
-                              color: const Color(0xffF8F8F8),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(left: 15.w, right: 8.w),
-                              width: 75.w,
-                              height: 1.5.h,
-                              color: const Color(0xffF8F8F8),
-                            ),
-                            Text(
-                              "Step 3/3",
-                              style: TextStyle(
-                                fontSize: 10.sp,
+                              Container(
+                                width: 75.w,
+                                height: 1.5.h,
                                 color: const Color(0xffF8F8F8),
                               ),
+                              Container(
+                                margin: EdgeInsets.only(left: 15.w),
+                                width: 75.w,
+                                height: 1.5.h,
+                                color: const Color(0xffF8F8F8),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(left: 15.w, right: 8.w),
+                                width: 75.w,
+                                height: 1.5.h,
+                                color: const Color(0xffF8F8F8),
+                              ),
+                              Text(
+                                "Step 3/3",
+                                style: TextStyle(
+                                  fontSize: 10.sp,
+                                  color: const Color(0xffF8F8F8),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 21.w, top: 8.h),
+                            child: Text(
+                              "Just one last thing",
+                              style: TextStyle(
+                                color: const Color(0xffF8F8F8),
+                                fontSize: 17.sp,
+                              ),
                             ),
-                          ],
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 21.w, top: 8.h),
-                          child: Text(
-                            "Just one last thing",
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 15.w, top: 20.h),
+                      child: Row(
+                        children: [
+                          Text(
+                            "Full Name ",
                             style: TextStyle(
-                              color: const Color(0xffF8F8F8),
-                              fontSize: 17.sp,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12.sp,
+                              color: Colors.black,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 15.w, top: 20.h),
-                    child: Row(
-                      children: [
-                        Text(
-                          "Full Name ",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 12.sp,
-                            color: Colors.black,
+                          Text(
+                            "(Helps driver confirm it is you)",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12.sp,
+                              color: const Color(0xff747474),
+                            ),
                           ),
-                        ),
-                        Text(
-                          "(Helps driver confirm it is you)",
-                          style: TextStyle(
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.only(left: 10.w, top: 11.h, right: 21.w),
+                      child: TextFormField(
+                        controller: _nameController,
+                        decoration: InputDecoration(
+                          hintText: 'Enter Your Name',
+                          hintStyle: TextStyle(
                             fontWeight: FontWeight.w400,
-                            fontSize: 12.sp,
-                            color: const Color(0xff747474),
+                            color: Color(0xff747474),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(14.sp),
+                            borderSide: const BorderSide(color: Colors.black12),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(14.sp),
+                            borderSide: const BorderSide(color: Colors.black12),
                           ),
                         ),
-                      ],
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your name';
+                          }
+                          return null;
+                        },
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.only(left: 10.w, top: 11.h, right: 21.w),
-                    child: TextFormField(
-                      controller: _nameController,
-                      decoration: InputDecoration(
-                        hintText: 'Enter Your Name',
-                        hintStyle: TextStyle(
+                    Padding(
+                      padding: EdgeInsets.only(left: 15.w, top: 30.h),
+                      child: Text(
+                        "Gender",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 12.sp,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.only(left: 10.w, top: 11.h, right: 21.w),
+                      child: DropdownButtonFormField<String>(
+                        value: _selectedGender,
+                        items: ["Male", "Female"].map((String gender) {
+                          return DropdownMenuItem<String>(
+                            value: gender,
+                            child: Text(gender),
+                          );
+                        }).toList(),
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            _selectedGender = newValue;
+                          });
+                        },
+                        decoration: InputDecoration(
+                          hintText: 'Select Your Gender',
+                          hintStyle: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: Color(0xff747474),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(
+                            vertical: 15.h,
+                            horizontal: 12.w,
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(14.sp),
+                            borderSide: const BorderSide(color: Colors.black12),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(14.sp),
+                            borderSide: const BorderSide(color: Colors.black12),
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please select your gender';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 15.w, top: 40.h),
+                      child: Text(
+                        "Are you a person with a disability?",
+                        style: TextStyle(
                           fontWeight: FontWeight.w400,
+                          fontSize: 12.sp,
                           color: Color(0xff747474),
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(14.sp),
-                          borderSide: const BorderSide(color: Colors.black12),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(14.sp),
-                          borderSide: const BorderSide(color: Colors.black12),
-                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 15.w, top: 30.h),
-                    child: Text(
-                      "Gender",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 12.sp,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.only(left: 10.w, top: 11.h, right: 21.w),
-                    child: DropdownButtonFormField<String>(
-                      value: _selectedGender,
-                      items: ["Male", "Female"].map((String gender) {
-                        return DropdownMenuItem<String>(
-                          value: gender,
-                          child: Text(gender),
-                        );
-                      }).toList(),
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          _selectedGender = newValue;
-                        });
-                      },
-                      decoration: InputDecoration(
-                        hintText: 'Select Your Gender',
-                        hintStyle: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          color: Color(0xff747474),
-                        ),
-                        contentPadding: EdgeInsets.symmetric(
-                          vertical: 15.h,
-                          horizontal: 12.w,
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(14.sp),
-                          borderSide: const BorderSide(color: Colors.black12),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(14.sp),
-                          borderSide: const BorderSide(color: Colors.black12),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 15.w, top: 40.h),
-                    child: Text(
-                      "Are you a person with a disability?",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12.sp,
-                        color: Color(0xff747474),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  // No option
-                  _buildDisabilityOption("No", false),
-                  SizedBox(height: 10.h),
-                  // Yes option
-                  _buildDisabilityOption("Yes", true),
-                ],
-              ),
-            ),
-          ),
-          InkWell(
-            onTap: () {
-              print("Continue");
-              print("Selected Gender: $_selectedGender");
-              print("Continue");
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return Home();
-              }));
-            },
-            child: Container(
-              width: 320.w,
-              height: 44.h,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(9.sp),
-                color: const Color(0xff423B3B),
-              ),
-              child: Center(
-                child: Text(
-                  "Let’s go",
-                  style: TextStyle(color: const Color(0xffFFEA00)),
+                    SizedBox(height: 10.h),
+                    _option("No", false),
+                    SizedBox(height: 10.h),
+                    _option("Yes", true),
+                  ],
                 ),
               ),
             ),
-          ),
-          SizedBox(height: 20.h),
-        ],
+            InkWell(
+              onTap: () async {
+                if (_formKey.currentState?.validate() ?? false) {
+                  SharedPreferences preferences =
+                      await SharedPreferences.getInstance();
+                  await preferences.setBool('userId', true);
+                  print("Continue");
+                  print("Selected Gender: $_selectedGender");
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) {
+                    return Home();
+                  }));
+                }
+              },
+              child: Container(
+                width: 320.w,
+                height: 44.h,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(9.sp),
+                  color: const Color(0xff423B3B),
+                ),
+                child: Center(
+                  child: Text(
+                    "Let’s go",
+                    style: TextStyle(color: const Color(0xffFFEA00)),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 20.h),
+          ],
+        ),
       ),
     );
   }
 
-  Widget _buildDisabilityOption(String label, bool isDisabled) {
+  Widget _option(String label, bool isDisabled) {
     return Padding(
       padding: EdgeInsets.only(left: 11.w),
       child: GestureDetector(

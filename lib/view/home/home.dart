@@ -11,8 +11,8 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(),
       // appBar: AppBar(),
-
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -26,7 +26,12 @@ class Home extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(top: 38.h, left: 5.w),
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      // Navigator.push(context,
+                      //     MaterialPageRoute(builder: (context) {
+                      //   return Drawer();
+                      // }));
+                    },
                     icon: Icon(Icons.menu),
                     iconSize: 28.sp,
                     color: Color(0xffF5F5F5),

@@ -2,35 +2,36 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tracking/view/auth/stepOne.dart';
-import 'package:tracking/view/auth/stepThree.dart';
-import 'package:tracking/view/auth/stepTow.dart';
 import 'package:tracking/view/home/home.dart';
-import 'package:tracking/view/screens/confirmLocation/confirmLocation.dart';
 import 'package:tracking/view/screens/spashScreen/firstSreen.dart';
-import 'package:tracking/view/screens/spashScreen/secondSreen.dart';
-import 'package:tracking/view/screens/spashScreen/thirdSreen.dart';
-import 'package:tracking/view/searchLocation/searchLocation.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool userId = prefs.getBool('userId') ?? false;
+  // bool userLoggedIn = prefs.getString('mobile_number') != null;
+  runApp(MyApp(userId: userId));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool userId;
+
+  const MyApp({super.key, required this.userId});
 
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-        designSize: Size(360, 690),
-        minTextAdapt: true,
-        splitScreenMode: true,
-        builder: (context, child) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            home: child,
-          );
-        },
-        child: Firstsreen());
+      designSize: const Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: userId ? const Home() : const FirstSreen(),
+        );
+      },
+    );
   }
 }

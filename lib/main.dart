@@ -31,10 +31,9 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home:
-              //  SearchLocation(),
+          home: LocationMap(),
 
-              userId ? Home() : const SpashSreen(),
+          // userId ? Home() : const SpashSreen(),
         );
       },
     );

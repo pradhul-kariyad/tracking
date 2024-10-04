@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tracking/view/auth/stepTow.dart';
 import 'package:tracking/view/home/home.dart';
-import 'package:tracking/view/screens/spashScreen/fourthScreen.dart';
 
 class StepThree extends StatefulWidget {
   const StepThree({super.key});
@@ -48,7 +47,9 @@ class _StepThreeState extends State<StepThree> {
                                 onPressed: () {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (context) {
-                                    return StepTow();
+                                    return StepTow(
+                                      mobileNumber: '',
+                                    );
                                   }));
                                 },
                                 icon: const Icon(
@@ -244,7 +245,10 @@ class _StepThreeState extends State<StepThree> {
                 child: Center(
                   child: Text(
                     "Let’s go",
-                    style: TextStyle(color: const Color(0xffFFEA00)),
+                    style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w600,
+                        color: const Color(0xffFFEA00)),
                   ),
                 ),
               ),

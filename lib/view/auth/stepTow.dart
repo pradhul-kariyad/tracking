@@ -1,14 +1,15 @@
 // ignore_for_file: avoid_print, no_leading_underscores_for_local_identifiers, use_build_context_synchronously, unused_import, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; // Import for TextInputFormatter
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tracking/view/auth/stepOne.dart';
 import 'package:tracking/view/auth/stepThree.dart';
 
 class StepTow extends StatefulWidget {
-  const StepTow({super.key});
+  final String? mobileNumber;
+  const StepTow({super.key, required this.mobileNumber});
 
   @override
   _StepTowState createState() => _StepTowState();
@@ -97,7 +98,7 @@ class _StepTowState extends State<StepTow> {
                     Padding(
                       padding: EdgeInsets.only(left: 21.w, top: 20.h),
                       child: Text(
-                        "Login using the OTP sent to +91 7592993703",
+                        "Login using the OTP sent to ${widget.mobileNumber}",
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 12.sp,
@@ -156,8 +157,9 @@ class _StepTowState extends State<StepTow> {
                           ),
                           SizedBox(width: 3.w),
                           Text(
-                            "in 27 s",
+                            "?",
                             style: TextStyle(
+                              // decoration: TextDecoration.underline,
                               fontWeight: FontWeight.w400,
                               fontSize: 12.sp,
                               color: const Color(0xff006FFF),
@@ -189,10 +191,13 @@ class _StepTowState extends State<StepTow> {
                   borderRadius: BorderRadius.circular(9.sp),
                   color: const Color(0xff423B3B),
                 ),
-                child: const Center(
+                child: Center(
                   child: Text(
                     "Continue",
-                    style: TextStyle(color: Color(0xffFFEA00)),
+                    style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xffFFEA00)),
                   ),
                 ),
               ),

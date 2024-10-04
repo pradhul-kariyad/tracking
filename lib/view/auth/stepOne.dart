@@ -2,9 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tracking/view/auth/stepTow.dart';
-import 'package:tracking/view/screens/spashScreen/fourthScreen.dart';
+import 'package:tracking/view/screens/spashScreen/spashSreen.dart';
 
 class StepOne extends StatefulWidget {
   const StepOne({super.key});
@@ -16,7 +15,7 @@ class StepOne extends StatefulWidget {
 class _StepOneState extends State<StepOne> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _numberController =
-      TextEditingController(text: '+91');
+      TextEditingController(text: "+ 91");
   final TextEditingController _mobileController = TextEditingController();
 
   @override
@@ -44,7 +43,7 @@ class _StepOneState extends State<StepOne> {
                           onPressed: () {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
-                              return const FourthScreen();
+                              return const SpashSreen();
                             }));
                           },
                           icon: const Icon(
@@ -111,14 +110,20 @@ class _StepOneState extends State<StepOne> {
                       width: 90.w,
                       child: TextFormField(
                         controller: _numberController,
+                        keyboardType: TextInputType.phone,
                         readOnly: false,
                         decoration: InputDecoration(
-                          suffixIcon: IconButton(
-                            onPressed: () {},
-                            icon:
-                                const Icon(Icons.keyboard_arrow_down_outlined),
-                            color: const Color(0xff747474),
+                          hintText: '+  91',
+                          hintStyle: const TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: Color(0xff747474),
                           ),
+                          // suffixIcon: IconButton(
+                          //   onPressed: () {},
+                          //   icon:
+                          //       const Icon(Icons.keyboard_arrow_down_outlined),
+                          //   color: const Color(0xff747474),
+                          // ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(14.sp),
                             borderSide: const BorderSide(color: Colors.black12),
@@ -128,6 +133,12 @@ class _StepOneState extends State<StepOne> {
                             borderSide: const BorderSide(color: Colors.black12),
                           ),
                         ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Country code';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                   ),
@@ -155,7 +166,7 @@ class _StepOneState extends State<StepOne> {
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your mobile number';
+                            return 'Enter your mobile number';
                           } else if (value.length != 10) {
                             return 'Mobile number should be 10 digits';
                           }
@@ -197,14 +208,16 @@ class _StepOneState extends State<StepOne> {
                 child: InkWell(
                   onTap: () async {
                     if (_formKey.currentState!.validate()) {
-                      // SharedPreferences prefs =
-                      //     await SharedPreferences.getInstance();
-                      // await prefs.setString(
-                      //     'mobile_number', _mobileController.text);
+                      String fullNumber =
+                          '${_numberController.text} ${_mobileController.text}';
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return const StepTow();
+                        return StepTow(mobileNumber: fullNumber);
                       }));
+                      // Navigator.push(context,
+                      //     MaterialPageRoute(builder: (context) {
+                      //   return const StepTow();
+                      // }));
                     } else {
                       print("Validation failed");
                     }
@@ -216,10 +229,13 @@ class _StepOneState extends State<StepOne> {
                       borderRadius: BorderRadius.circular(9.sp),
                       color: const Color(0xff423B3B),
                     ),
-                    child: const Center(
+                    child: Center(
                       child: Text(
                         "Continue",
-                        style: TextStyle(color: Color(0xffFFEA00)),
+                        style: TextStyle(
+                            color: Color(0xffFFEA00),
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w600),
                       ),
                     ),
                   ),

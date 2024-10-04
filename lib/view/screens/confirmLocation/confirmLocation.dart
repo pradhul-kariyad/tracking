@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tracking/main.dart';
 import 'package:tracking/view/home/home.dart';
+import 'package:tracking/view/home/homeMap/homeMap.dart';
+import 'package:tracking/view/screens/trackingMap/trackingMap.dart';
 import 'package:tracking/view/searchLocation/searchLocation.dart';
 
 class ConfirmLocation extends StatelessWidget {
@@ -14,16 +16,13 @@ class ConfirmLocation extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          Container(
+          SizedBox(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/images/mapKannur.png'),
-                    fit: BoxFit.cover)),
+            child: const TrackingMap(),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 50.h, left: 20.w),
+            padding: EdgeInsets.only(top: 39.h, left: 20.w),
             child: CircleAvatar(
               backgroundColor: Color(0xff383434),
               child: IconButton(
@@ -71,7 +70,6 @@ class ConfirmLocation extends StatelessWidget {
                         width: 330.w,
                         height: 65.h,
                         decoration: BoxDecoration(
-                            // color: Colors.amber,
                             border: Border.all(
                                 width: 1.sp, color: Color(0xffDBDBDB)),
                             borderRadius: BorderRadius.circular(12.sp)),

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tracking/main.dart';
 import 'package:tracking/view/home/home.dart';
 import 'package:tracking/view/screens/confirmLocation/confirmLocation.dart';
+import 'package:tracking/view/screens/trackingMap/trackingMap.dart';
 
 class SearchLocation extends StatelessWidget {
   const SearchLocation({super.key});
@@ -50,6 +51,11 @@ class SearchLocation extends StatelessWidget {
                         height: 40.h,
                         width: 290.w,
                         child: TextFormField(
+                          style: TextStyle(
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w500,
+                            color: Color(0xff747474),
+                          ),
                           // controller: _nameController,
                           decoration: InputDecoration(
                             fillColor: Color(0xff444444),
@@ -61,7 +67,9 @@ class SearchLocation extends StatelessWidget {
                             ),
                             hintText: 'Current Location',
                             hintStyle: TextStyle(
-                              fontWeight: FontWeight.w400,
+                              // backgroundColor: Colors.white,
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w500,
                               color: Color(0xff747474),
                             ),
                             focusedBorder: OutlineInputBorder(
@@ -85,6 +93,11 @@ class SearchLocation extends StatelessWidget {
                         height: 40.h,
                         width: 290.w,
                         child: TextFormField(
+                          style: TextStyle(
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w500,
+                            color: Color(0xff747474),
+                          ),
                           // controller: _nameController,
                           decoration: InputDecoration(
                             fillColor: Color(0xff444444),
@@ -96,7 +109,8 @@ class SearchLocation extends StatelessWidget {
                             ),
                             hintText: 'Where to?',
                             hintStyle: TextStyle(
-                              fontWeight: FontWeight.w400,
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w500,
                               color: Color(0xff747474),
                             ),
                             focusedBorder: OutlineInputBorder(
@@ -121,32 +135,32 @@ class SearchLocation extends StatelessWidget {
                       ),
                     ),
                     Positioned(
-                        bottom: 35.h,
+                        bottom: 37.h,
                         left: 76.w,
                         child: Text(
                           "|",
                           style: TextStyle(
-                              fontSize: 10.sp,
+                              fontSize: 9.sp,
                               fontWeight: FontWeight.bold,
                               color: Color(0xffAFADAD)),
                         )),
                     Positioned(
-                        bottom: 45.h,
+                        bottom: 47.h,
                         left: 76.w,
                         child: Text(
                           "|",
                           style: TextStyle(
-                              fontSize: 10.sp,
+                              fontSize: 9.sp,
                               fontWeight: FontWeight.bold,
                               color: Color(0xffAFADAD)),
                         )),
                     Positioned(
-                        bottom: 55.h,
+                        bottom: 57.h,
                         left: 76.w,
                         child: Text(
                           "|",
                           style: TextStyle(
-                              fontSize: 10.sp,
+                              fontSize: 9.sp,
                               fontWeight: FontWeight.bold,
                               color: Color(0xffAFADAD)),
                         )),
@@ -339,22 +353,29 @@ class SearchLocation extends StatelessWidget {
               padding: EdgeInsets.only(top: 300.h, bottom: 8.h),
               child: Divider(),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.location_on_rounded,
-                  color: Color(0xff423B3B),
-                  size: 17.sp,
-                ),
-                SizedBox(
-                  width: 3.w,
-                ),
-                Text(
-                  "Select location on map",
-                  style: TextStyle(color: Color(0xff939393)),
-                ),
-              ],
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return TrackingMap();
+                }));
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.location_on_rounded,
+                    color: Color(0xff423B3B),
+                    size: 17.sp,
+                  ),
+                  SizedBox(
+                    width: 3.w,
+                  ),
+                  Text(
+                    "Select location on map",
+                    style: TextStyle(color: Color(0xff939393)),
+                  ),
+                ],
+              ),
             ),
             SizedBox(
               height: 14.h,

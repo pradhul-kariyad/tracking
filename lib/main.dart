@@ -5,7 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tracking/view/auth/stepOne.dart';
 import 'package:tracking/view/home/home.dart';
-import 'package:tracking/view/screens/spashScreen/firstSreen.dart';
+import 'package:tracking/view/home/locationMap/locationMap.dart';
+import 'package:tracking/view/screens/spashScreen/spashSreen.dart';
+import 'view/screens/trackingMap/trackingMap.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +31,10 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: userId ? const Home() : const FirstSreen(),
+          home:
+              //  SearchLocation(),
+
+              userId ? Home() : const SpashSreen(),
         );
       },
     );

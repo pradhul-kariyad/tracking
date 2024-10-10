@@ -31,9 +31,10 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: LocationMap(),
+          home:
+          //  LocationMap(),
 
-          // userId ? Home() : const SpashSreen(),
+          userId ? Home() : const SpashSreen(),
         );
       },
     );

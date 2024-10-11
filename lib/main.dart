@@ -32,9 +32,8 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           home:
-          //  LocationMap(),
-
-          userId ? Home() : const SpashSreen(),
+              //  LocationMap(),
+              userId ? Home() : const SpashSreen(),
         );
       },
     );
